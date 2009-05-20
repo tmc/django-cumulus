@@ -28,7 +28,16 @@ Installation
     class SomeKlass(models.Model):
         some_field = models.ImageField(upload_to=cumulus_upload_to)
 
-You can also check out and modify the example app source for a simple test app.
+Alternatively, if you don't want to set the DEFAULT_FILE_STORAGE, you can do the following in your models::
+
+    from cumulus.storage import CloudFileStorage
+    from cumulus.utils import cumulus_upload_to
+    
+    cloudfiles_storage = CloudFileStorage()
+    
+    class SomeKlass(models.Model):
+        some_field = models.ImageField(storage=cloudfiles_storage,
+                                       upload_to=cumulus_upload_to)
 
 Planned Features
 ================
