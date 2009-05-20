@@ -10,14 +10,19 @@ Currently, this consists of a custom storage backend and a helper function.
 Installation
 ============
 
-- git clone git://github.com/richleland/django-cumulus.git
-- Run "python setup.py install" from within the django-cumulus folder
-- In your settings.py:
+#. git clone git://github.com/richleland/django-cumulus.git
+
+#. Run "python setup.py install" from within the django-cumulus folder
+
+#. Add the following to your project's settings.py file::
+
     CUMULUS_USERNAME = 'YourUsername'
     CUMULUS_API_KEY = 'YourAPIKey'
     CUMULUS_CONTAINER = 'ContainerName'
     DEFAULT_FILE_STORAGE = 'cumulus.storage.CloudFileStorage'
-- In your models.py file:
+    
+#. Then implement the custom upload_to in your models.py file::
+
     from cumulus.utils import cumulus_upload_to
     
     class SomeKlass(models.Model):
@@ -36,3 +41,8 @@ Requirements
 ============
 
 #. Mosso's Cloud Files python module http://www.mosso.com/cloudfiles.jsp
+
+TODOs and BUGS
+==============
+See: http://github.com/richleland/django-cumulus/issues
+
