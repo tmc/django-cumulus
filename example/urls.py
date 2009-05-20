@@ -1,17 +1,18 @@
 from django.conf.urls.defaults import *
 from django.conf import settings
+from photos.models import Photo
 
-# Uncomment the next two lines to enable the admin:
+photo_dict = {
+    'queryset': Photo.objects.all()
+}
+
 from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    # Uncomment the admin/doc line below and add 'django.contrib.admindocs' 
-    # to INSTALLED_APPS to enable admin documentation:
     (r'^admin/doc/', include('django.contrib.admindocs.urls')),
-
-    # Uncomment the next line to enable the admin:
     (r'^admin/(.*)', admin.site.root),
+    (r'^photos/$', 'django.views.generic.list_detail.object_list', photo_dict),
 )
 
 if settings.DEBUG:
