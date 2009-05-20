@@ -45,6 +45,7 @@ Planned Features
 - Clone of Mosso's Cloud Files interface within the Django admin
 - Implementation of the Cloud Files pseudo-subdirectories
 - Multi-container support, possibly in the form of a custom widget
+- Push metadata with each file
 
 Requirements
 ============
