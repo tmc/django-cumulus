@@ -60,7 +60,7 @@ class CloudFileStorage(Storage):
         """
         content.open()
         if hasattr(content, 'chunks'):
-            content_str = ''.join(chunk for chunk in content.chunks())
+            content_str = content.chunks()
         else:
             content_str = content.read()
         cloud_obj = self.container.create_object(name)
