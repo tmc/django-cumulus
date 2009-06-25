@@ -64,7 +64,14 @@ class CloudFileStorage(Storage):
         else:
             content_str = content.read()
         cloud_obj = self.container.create_object(name)
-        cloud_obj.content_type = content.content_type
+
+        # try to pull a content type off of the File object
+        if hasattr(content, 'content_type'):
+            cloud_obj.content_type = content.content_type
+        # it's possible that it's an ImageFieldFile which won't have a direct
+        # 'content_type' attr.  It would live on it's file attr though.
+        if hasattr(content, 'file') and hasattr(content.file, 'content_type'):
+            cloud_obj.content_type = content.file.content_type
         cloud_obj.send(content_str)
         content.close()
         return name
