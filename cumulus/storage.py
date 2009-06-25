@@ -39,7 +39,7 @@ class CloudFileStorage(Storage):
         self.container = self.connection.get_container(CUMULUS_CONTAINER)
         if not self.container.is_public():
             self.container.make_public()
-    
+
     def _get_cloud_obj(self, name):
         """
         Helper function to get retrieve the requested Cloud Files Object.
@@ -68,7 +68,7 @@ class CloudFileStorage(Storage):
         cloud_obj.send(content_str)
         content.close()
         return name
-    
+
     def delete(self, name):
         """
         Deletes the specified file from the storage system.
@@ -85,7 +85,7 @@ class CloudFileStorage(Storage):
             return True
         except NoSuchObject:
             return False
-        
+
     def listdir(self, path):
         """
         Lists the contents of the specified path, returning a 2-tuple of lists;
@@ -105,4 +105,3 @@ class CloudFileStorage(Storage):
         directly by a web browser.
         """
         return self._get_cloud_obj(name).public_uri()
-        
